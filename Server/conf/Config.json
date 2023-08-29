@@ -1,0 +1,50 @@
+/**
+ * This file contains the user / implementation / Business logic level config.
+ *
+ * If you want any JS to execute while preparing this conf supply the props in <?JS= :JS>
+ * */
+{
+  /**
+   * Common configurations.
+   * These will be loaded common for each environment.
+   * You can override these in environment specific blocks.
+   * */
+  "common": {
+    "logQuery": true,
+    "email": {
+      "from": "",
+      "auth": {
+        "api_key": "",
+        "domain": ""
+      }
+    },
+    "ENABLE_CRON":1,
+    "s3": {
+      "region": "",
+      "bucket": "",
+      "key": "",
+      "secret": ""
+    }
+  },
+  /**
+   * For Dev environment
+   * */
+  "development": {
+  },
+  /**
+   * For Prod environment
+   * */
+  "production": {
+    "logQuery": false
+  },
+  /**
+   * For Test environment
+   * */
+  "test": {
+  },
+  /**
+   * For Staging/QA environment
+   * */
+  "qa": {
+  }
+}

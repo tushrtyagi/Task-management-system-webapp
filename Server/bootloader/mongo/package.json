@@ -1,0 +1,11 @@
+{
+    "name": "mongo-db-manager",
+    "version": "1.0.0",
+    "description": "Manages the mongo db connection",
+    "main": "./lib/MongoDbModel.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Kushal",
+    "license": "GPL3"
+}

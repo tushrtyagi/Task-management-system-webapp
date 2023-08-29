@@ -1,0 +1,11 @@
+{
+    "name": "ConfigManager",
+    "version": "1.0.0",
+    "description": "Manages the configurations",
+    "main": "./lib/ConfigManager.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Kushal",
+    "license": "GPL3"
+}

@@ -1,0 +1,85 @@
+/**
+ * This file contains the application level config.
+ *
+ * For implementation / Business logic config use the file 'Config.json'
+ *
+ * If you want any JS to execute while preparing this conf supply the props in <?JS= :JS>
+ * */
+{
+  /**
+   * Common configurations.
+   * These will be loaded common for each environment.
+   * You can override these in environment specific blocks.
+   * */
+  "common": {
+    //Default port number. Reads environment variable
+    "port": "<?JS= process.env.PORT || 3000 :JS>",
+    //Version of the app
+    "appVersion": "1.0.0",
+    //App Name
+    "appName": "BOILERPLATE APP",
+    "companyName": "Codalien",
+    //Configuration for logger
+    "logger": {
+      //Define log output format
+      "fullFormat": "[%level][%name-%pid][%file:%line][%time] - %message",
+      "minimalFormat": "[%name-%pid][%file:%line] - %message",
+      //The minimum log level to use
+      "level": "trace",
+      //This name will be displayed on logs as app name
+      "appNameToDisplayInLog": "BOL-APP",
+      //Show hidden props in logged objects
+      "showHidden": true,
+      //Stdout appender config for logger
+      "stdout": {
+        "enabled": true
+      }
+    },
+    "session": {
+      "generatorAlgo": "aes-192-cbc",
+      "generatorSecret": "dksjhgflaskfgsdkgflsudfgsdifgei83476t74tykergfrfo3487tr43ftgrwyekfgshkjgfkwefgwekuyrft438trwitfkyweifw"
+    },
+
+    "mongoUrlAPP": "<?JS= process.env.MONGO_URL || 'mongodb://localhost:27017/sample' :JS>",
+    "mongoUrlAgendaDB": "<?JS= process.env.MONGO_URL || 'mongodb://localhost:27017/sample' :JS>",
+
+    //default language
+    "DEFAULT_LANGUAGE_CODE" : "EN"
+  },
+  /**
+   * For Dev environment
+   * */
+  "development": {
+    "port": "<?JS= process.env.PORT || 3000 :JS>",
+    "serverUrl": "//localhost:<?JS= process.env.PORT || 3000 :JS>",
+    "host": "localhost:<?JS= process.env.PORT || 8080 :JS>",
+    "websiteUrl": "http://localhost:3000"
+  },
+  /**
+   * For Prod environment
+   * */
+  "production": {
+    "port": "<?JS= process.env.PORT || 8080 :JS>",
+    "serverUrl": "https://yo.com",
+    "host": "yo.com",
+    "websiteUrl": "https://yo.com"
+  },
+  /**
+   * For Test environment
+   * */
+  "test": {
+    "port": "<?JS= process.env.PORT || 8080 :JS>",
+    "serverUrl": "//localhost:<?JS= process.env.PORT || 8080 :JS>",
+    "host": "localhost:<?JS= process.env.PORT || 8080 :JS>",
+    "websiteUrl": "https://stage.yo.com"
+  },
+  /**
+   * For Staging/QA environment
+   * */
+  "qa": {
+    "port": "<?JS= process.env.PORT || 8080 :JS>",
+    "serverUrl": "https://stage.yo.com",
+    "host": "stage.yo.com",
+    "websiteUrl": "https://stage.yo.com"
+  }
+}

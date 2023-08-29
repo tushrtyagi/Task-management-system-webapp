@@ -1,0 +1,59 @@
+/* ......Navbar...... */
+.navbar {
+    background-color: rgb(64, 27, 134);
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem;
+
+}
+
+.navbar a {
+    color: rgb(248, 248, 6);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 1rem;
+}
+
+.navbar a:last-child {
+    margin-right: 0;
+}
+
+.navbar-links {
+    display: flex;
+}
+
+.navbar-auth a {
+    padding: 0.5rem 1rem;
+    border: 0.5px solid red;
+    border-radius: 7px;
+    position: relative;
+    left: -79px;
+    top: 0px;
+}
+
+.navbar-auth a:hover {
+    background-color: red;
+    color: white;
+}
+
+/* .....button..... */
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.button-container button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease all;
+}
+
+.button-container button:hover {
+    background-color: #444;
+}
