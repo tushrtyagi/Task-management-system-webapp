@@ -1,6 +1,6 @@
 const Agendash = require('agendash');
 const basicAuth = require('express-basic-auth');
-const TaskList = require("..mongo/models/TaskList");
+const TaskList = require("../models/mongo/TaskList");
 /**
  * For jobs server UI
  * */

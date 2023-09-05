@@ -1,5 +1,5 @@
 import React from "react";
-import "./Main"
+import "./Main.css"; // Corrected the import path
 
 function Board({ title, tasks, onAddTask, onDragStart, onDrop }) {
   const handleDragOver = (event) => {
@@ -10,15 +10,14 @@ function Board({ title, tasks, onAddTask, onDragStart, onDrop }) {
     onDrop();
   };
 
+  // Ensure tasks is an array or provide a default empty array
+  const taskItems = Array.isArray(tasks) ? tasks : [];
+
   return (
-    <div
-      className="board"
-      onDragOver={handleDragOver}
-      onDrop={handleDrop}
-    >
+    <div className="board" onDragOver={handleDragOver} onDrop={handleDrop}>
       <h2>{title}</h2>
       <div className="tasks">
-        {tasks.map((task, index) => (
+        {taskItems.map((task, index) => (
           <div
             key={index}
             className="task"
