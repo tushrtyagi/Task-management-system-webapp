@@ -9,6 +9,15 @@ body, h1, h2, p {
   padding: 20px;
 }
 
+  input {
+    width: 100%;
+    padding: 6px 6px;
+    font-size: 13px;
+    border: white;
+    border-radius: 8px;
+}
+
+
 .board {
   background-color: #f4f4f4;
   border-radius: 5px;
@@ -62,6 +71,25 @@ body, h1, h2, p {
   font-size: 17px;
 }
 
+.button {
+  background-color: rgb(223, 223, 19);
+  color: rgb(216, 28, 28);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 9px 13px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 11px;
+}
+
+.button:hover {
+  background-color: lightgray;
+}
+.delete-board-button {
+  background:none;
+  border:2px solid rgb(216, 28, 28);
+}
 .modal-content {
   position: absolute;
   top: 25px;
@@ -72,4 +100,28 @@ body, h1, h2, p {
   margin-bottom: 10px;
   color: yellow;
   font-weight: bold;
+}
+
+.task{
+
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    padding: 0 6px;
+    margin: 16px 0;
+}
+.delete-board-button{
+background: none;
+border: 2px solid rgb(216, 28, 28);
+width: 68px;
+}
+.edit-task-button {
+  color: red;
+  background:lightgray;
+  /* border: 2px solid red; */
+  width: 55px;
+  height: 34px;
+  position: relative;
+  left: 69px;
+  top: 1px;
 }

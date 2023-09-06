@@ -92,30 +92,24 @@ type User {
 }
 
 type TaskList {
-    _id: ID!
-    name: String!
-    tasks: [String]!
-  }
-
-
-type Task{
-  _id:ID!
-  name:String!
-  assignedTo:String
-  listId:ID!
+  _id: ID!
+  title: String!
+  boardId: ID!
 }
 
+type Task {
+    title: String!
+  }
 type List{
   _id:ID!
   name:String!
   tasks:[Task]
 }
 
-type Board{
-  _id: ID!
-  name:String
-  lists:[List]
-}
+  type Board {
+    name: String!
+    tasks: [Task]!
+  }
 
 input UserInput {
   name:String
@@ -137,16 +131,18 @@ type Query {
   loginUser(userInput:UserInput):User
   enumOptions(name: String!): [KvPair]
   getTaskLists: [TaskList]!
+  boards: [Board]!
+  board(boardId: ID!): Board
+  tasksByBoard(boardId: ID!): [TaskList]
 }
 
 type Mutation {
   mutationWithAuth(token: String!): MutateWithAuth
   createUser(userInput: UserInput): User
-  createBoard(name:String): Board
-  createList(name:String,board_id:ID!): List
-  createTask(name:String,assignedTo:String,list_id:ID!): Task
-   addBoard(boardName: String!): TaskList
-  addTaskToList(listId: ID!, task: String!): TaskList
+  createBoard(name: String!): Board
+  createTask(title: String!, boardId: ID!): TaskList
+    addBoard(boardName: String!): Board
+    addTask(boardName: String!, taskTitle: String!): Board
 }
 
 input KvPairInput {

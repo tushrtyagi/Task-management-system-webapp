@@ -9,6 +9,7 @@ const MutationWithAuthResolver = require('./resolvers/MutationWithAuthResolver')
 const {enc, dec} = require('../bootloader/security/StatelessMiddleware');
 const validator=require("validator");
 const TaskList = require("../models/mongo/TaskList");
+const Board= require("../models/mongo/Board")
 
 /**
  * The resolver root class
@@ -68,13 +69,13 @@ exports = module.exports = class ResolverRoot {
         return user;
     }
     
-    async createBoard({name}){
-        if(validator.isEmpty(name)){
-            throw new Error("Board Name is Empty");
-        }
-        const board=await BoardService.create(name);
-        return board;
-    }
+    // async createBoard({name}){
+    //     if(validator.isEmpty(name)){
+    //         throw new Error("Board Name is Empty");
+    //     }
+    //     const board=await BoardService.create(name);
+    //     return board;
+    // }
 
     async createList({name,board_id}){
         if(validator.isEmpty(name)){
@@ -84,13 +85,13 @@ exports = module.exports = class ResolverRoot {
         return List;
     }
 
-    async createTask({name,assignedTo,list_id}){
-        if(validator.isEmpty(name)){
-            throw new Error("Task Name is Empty");
-        }
-        const Task=await TaskService.create(name,assignedTo,list_id);
-        return Task;
-    }
+    // async createTask({name,assignedTo,list_id}){
+    //     if(validator.isEmpty(name)){
+    //         throw new Error("TaskList Name is Empty");
+    //     }
+    //     const TaskList=await TaskService.create(name,assignedTo,list_id);
+    //     return TaskList;
+    // }
 
     async Lists(){
         const allList=await ListService.find();
@@ -108,7 +109,7 @@ exports = module.exports = class ResolverRoot {
         //     console.log(newArray);
             
         // });
-        const tasks=await _db.Task.find({_id:{$in:taskArray}});
+        const tasks=await _db.TaskList.find({_id:{$in:taskArray}});
         const res={...Board[0]._doc,lists};
         // console.log(res);
 
@@ -128,7 +129,7 @@ exports = module.exports = class ResolverRoot {
         try {
           const taskList = await TaskList.findById(listId);
           if (!taskList) {
-            throw new Error("Task list not found");
+            throw new Error("TaskList list not found");
           }
     
           taskList.tasks.push(task);
@@ -156,6 +157,45 @@ exports = module.exports = class ResolverRoot {
         const Tasks=await TaskService.find();
         return Tasks;
     }
+
+    async boards  ()  {
+        return await Board.find();
+      }
+      async board (parent, args) {
+        return await Board.findById(args.boardId);
+      }
+      async tasksByBoard(parent, args)  {
+        return await TaskList.find({ boardId: args.boardId });
+      }
+
+      async createBoard (parent, args) {
+        const newBoard = new Board({
+          name: args.name,
+        });
+        await newBoard.save();
+        return newBoard;
+      }
+      async createTask  (_,args) {
+        try {
+            // Create a new task
+            const task = new TaskList({ title });
+    
+            const board = await Board.findById(boardId);
+            if (!board) {
+              throw new Error('Board not found');
+            }
+    
+            board.tasks.push(task);
+            await board.save();
+    
+            return task;
+          } catch (error) {
+            throw error;
+          }
+      }
+      async tasks (parent) {
+        return await TaskList.find({ boardId: parent._id });
+      }
 
     async constant({value}) {
         return value;

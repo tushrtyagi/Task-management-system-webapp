@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./TaskInputModal.css";
+
 function TaskInputModal({ isOpen, onClose, onAddTask }) {
   const [newTaskTitle, setNewTaskTitle] = useState("");
 
@@ -8,9 +9,11 @@ function TaskInputModal({ isOpen, onClose, onAddTask }) {
   };
 
   const handleAddTask = () => {
-    onAddTask(newTaskTitle);
-    setNewTaskTitle("");
-    onClose();
+    if (newTaskTitle) {
+      onAddTask(newTaskTitle);
+      setNewTaskTitle("");
+      onClose();
+    }
   };
 
   if (!isOpen) {

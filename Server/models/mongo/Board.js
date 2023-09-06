@@ -1,12 +1,12 @@
 /**
  * User model
  * */
-const MongoDbModel = require('../../bootloader/mongo');
+const MongoDbModel = require('../../bootloader/mongo/lib/MongoDbModel');
 // For Number types better reading
 const Float = Number;
 const Int = Number;
 
-class TaskList extends MongoDbModel {
+class Board extends MongoDbModel {
 
     /*Define which database to connect to*/
     static get connection() {
@@ -20,15 +20,18 @@ class TaskList extends MongoDbModel {
 
     static get Schema() {
         return mongoose => ({
-            title: {
+            name: {
                 type: String,
                 required: true,
+                unique: true,
               },
-              board: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Board",
-              },
-        });
+              tasks: [
+                {
+                  type: mongoose.Schema.Types.ObjectId,
+                  ref: "TaskList",
+                },
+              ],
+        })
     }
 
     static get Indexes() {
@@ -36,5 +39,5 @@ class TaskList extends MongoDbModel {
     }
 }
 
-exports = module.exports = TaskList;
+exports = module.exports = Board;
 

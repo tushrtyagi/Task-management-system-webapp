@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./Main.css"
 import "./TaskInputModal.css";
+
 function BoardInputModal({ isOpen, onClose, onAddBoard }) {
   const [newBoardName, setNewBoardName] = useState("");
 
@@ -9,9 +9,11 @@ function BoardInputModal({ isOpen, onClose, onAddBoard }) {
   };
 
   const handleAddBoard = () => {
-    onAddBoard(newBoardName);
-    setNewBoardName("");
-    onClose();
+    if (newBoardName) {
+      onAddBoard(newBoardName);
+      setNewBoardName("");
+      onClose();
+    }
   };
 
   if (!isOpen) {
